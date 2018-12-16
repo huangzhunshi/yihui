@@ -1,0 +1,32 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8082
+spring:
+  application:
+    name: gateway
+  cloud:
+      gateway:
+        discovery:
+          locator:
+            enabled: true
+        routes:
+          - id: v1
+            uri: lb://USERBOOT
+#            order: 10000  stripPrefix: true
+            predicates:
+              - Path=/userboot11/**
+            filters:
+              - StripPrefix=1
+              #- RewritePath=/userboot/(?<segment>.*), /$\{segment}
+
+
+
+
+
