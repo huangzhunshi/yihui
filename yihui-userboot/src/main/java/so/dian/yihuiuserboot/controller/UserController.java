@@ -15,4 +15,9 @@ public class UserController {
         return hi;
 
     }
+
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
 }
